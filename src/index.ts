@@ -1,0 +1,17 @@
+export { pluralize } from "./pluralize";
+export { singularize } from "./singularize";
+export { camelize } from "./camelize";
+export { underscore } from "./underscore";
+export { humanize } from "./humanize";
+export { titleize } from "./titleize";
+export { tableize } from "./tableize";
+export { classify } from "./classify";
+export { dasherize } from "./dasherize";
+export { foreignKey } from "./foreignKey";
+export { ordinal } from "./ordinal";
+export { ordinalize } from "./ordinalize";
+export { parameterize } from "./parameterize";
+export { capitalize } from "./capitalize";
+export { inflections, setInflections } from "./Inflector";
+export { transliterations, setTransliterations, transliterate } from "./Transliterator";
+export { constantify } from "./constantify";
