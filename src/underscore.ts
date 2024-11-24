@@ -2,6 +2,7 @@ import { inflections } from "./Inflector";
 
 const letterOrDigit = /[A-Za-z\d]/;
 const wordBoundaryOrNonLetter = /\b|[^a-z]/;
+const boundaryMatcher = /([A-Z\d]+)([A-Z][a-z])|([a-z\d])([A-Z])|(-)/g;
 
 export function underscore(camelCasedWord: string) {
   let result = camelCasedWord;
@@ -24,11 +25,13 @@ export function underscore(camelCasedWord: string) {
     });
   }
 
-  result = result.replace(/([A-Z\d]+)([A-Z][a-z])/g, "$1_$2");
-  result = result.replace(/([a-z\d])([A-Z])/g, "$1_$2");
-  result = result.replace(/-/g, "_");
-
-  return result.toLowerCase();
+  return result
+    .replace(boundaryMatcher, (_match, p1, p2, p3, p4, p5) => {
+      if (p1) return `${p1}_${p2}`;
+      if (p5) return `_`;
+      return `${p3}_${p4}`;
+    })
+    .toLowerCase();
 }
 
 function isWordBoundary(char: string): boolean {
