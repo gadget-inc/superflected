@@ -2,7 +2,8 @@ import { inflections } from "./Inflector";
 
 export function humanize(lowerCaseAndUnderscoredWord: string, options?: { capitalize?: boolean }) {
   let result = "" + lowerCaseAndUnderscoredWord;
-  const humans = inflections().humans;
+  const inflector = inflections();
+  const humans = inflector.humans;
   let human, rule, replacement;
 
   options = options || {};
@@ -26,7 +27,7 @@ export function humanize(lowerCaseAndUnderscoredWord: string, options?: { capita
   result = result.replace(/_/g, " ");
 
   result = result.replace(/([a-z\d]*)/gi, function (match) {
-    return inflections().lowerToAcronyms[match] || match.toLowerCase();
+    return inflector.lowerToAcronyms[match] || match.toLowerCase();
   });
 
   if (options.capitalize) {

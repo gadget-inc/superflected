@@ -5,13 +5,14 @@ export function applyInflections(word: string, rules: [RegExp | string, string][
     rule,
     regex,
     replacement;
+  const inflector = inflections();
 
   if (result.length === 0) {
     return result;
   } else {
     const match = result.toLowerCase().match(/\b\w+$/);
 
-    if (match && inflections().uncountables.indexOf(match[0]) > -1) {
+    if (match && inflector.uncountables.indexOf(match[0]) > -1) {
       return result;
     } else {
       for (let i = 0, ii = rules.length; i < ii; i++) {
