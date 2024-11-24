@@ -1,8 +1,9 @@
+import { AhoCorasick } from "./ahoCorasick";
 import { defaults } from "./defaults";
 function icPart(str: string) {
   return str
     .split("")
-    .map(c => `(?:${c.toUpperCase()}|${c.toLowerCase()})`)
+    .map((c) => `(?:${c.toUpperCase()}|${c.toLowerCase()})`)
     .join("");
 }
 
@@ -14,20 +15,20 @@ function remove<T>(arr: T[], elem: T) {
   }
 }
 
-
-
+/** Stores all the special cases for how words can be inflected */
 export class Inflector {
   plurals: [RegExp | string, string][] = [];
   singulars: [RegExp | string, string][] = [];
   uncountables: string[] = [];
   humans: [RegExp | string, string][] = [];
-  acronyms: Record<string, string> = {};
-  acronymRegex = /(?=a)b/;
+  lowerToAcronyms: Record<string, string> = {};
+  casedAcronymMatcher: AhoCorasick | null = null;
+  lowerAcronymMatcher: AhoCorasick | null = null;
 
   acronym(word: string) {
-    this.acronyms[word.toLowerCase()] = word;
-    const values = Object.values(this.acronyms);
-    this.acronymRegex = new RegExp(values.join("|"));
+    this.lowerToAcronyms[word.toLowerCase()] = word;
+    this.lowerAcronymMatcher = new AhoCorasick(Object.keys(this.lowerToAcronyms));
+    this.casedAcronymMatcher = new AhoCorasick(Object.values(this.lowerToAcronyms));
   }
 
   plural(rule: RegExp | string, replacement: string) {
@@ -94,13 +95,15 @@ export class Inflector {
       this.singulars = [];
       this.uncountables = [];
       this.humans = [];
-      this.acronyms = {};
+      this.lowerToAcronyms = {};
+      this.casedAcronymMatcher = null;
+      this.lowerAcronymMatcher = null;
+    } else if (scope === "acronyms") {
+      this.lowerToAcronyms = {};
+      this.casedAcronymMatcher = null;
+      this.lowerAcronymMatcher = null;
     } else {
-      if (scope === "acronyms") {
-        this.acronyms = {};
-      } else {
-        this[scope] = [];
-      }
+      this[scope] = [];
     }
   }
 }

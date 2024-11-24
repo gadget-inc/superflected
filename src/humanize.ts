@@ -25,12 +25,12 @@ export function humanize(lowerCaseAndUnderscoredWord: string, options?: { capita
   result = result.replace(/_id$/, "");
   result = result.replace(/_/g, " ");
 
-  result = result.replace(/([a-z\d]*)/gi, function(match) {
-    return inflections().acronyms[match] || match.toLowerCase();
+  result = result.replace(/([a-z\d]*)/gi, function (match) {
+    return inflections().lowerToAcronyms[match] || match.toLowerCase();
   });
 
   if (options.capitalize) {
-    result = result.replace(/^\w/, function(match) {
+    result = result.replace(/^\w/, function (match) {
       return match.toUpperCase();
     });
   }

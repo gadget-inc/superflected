@@ -17,7 +17,7 @@ import {
   dasherize,
   parameterize,
   constantify,
-  setTransliterations
+  setTransliterations,
 } from "../src";
 const inflect = inflections();
 import TestCases from "./cases";
@@ -143,10 +143,10 @@ describe("Inflector", () => {
       ["HttpsApis", "https_apis", "Https apis", "Https Apis"],
       ["Html5", "html5", "Html5", "Html5"],
       ["Restfully", "restfully", "Restfully", "Restfully"],
-      ["RoRails", "ro_rails", "Ro rails", "Ro Rails"]
+      ["RoRails", "ro_rails", "Ro rails", "Ro Rails"],
     ];
 
-    for (const [i, [camel, under, human, title]] of items.entries()) {
+    for (const [camel, under, human, title] of items) {
       expect(camelize(under)).toBe(camel);
       expect(camelize(camel)).toBe(camel);
       expect(underscore(under)).toBe(under);
@@ -279,7 +279,7 @@ describe("Inflector", () => {
   });
 
   it("respects the inflector locale", () => {
-    setInflections("es", function(inflect) {
+    setInflections("es", function (inflect) {
       inflect.plural(/$/, "s");
       inflect.plural(/z$/i, "ces");
 
@@ -299,7 +299,7 @@ describe("Inflector", () => {
     expect(pluralize("el", "es")).toBe("los");
     expect(pluralize("el")).toBe("els");
 
-    setInflections("es", function(inflect) {
+    setInflections("es", function (inflect) {
       inflect.clear();
     });
 
@@ -312,7 +312,7 @@ describe("Inflector", () => {
   describe("pluralization", () => {
     for (const [singular, plural] of Object.entries(TestCases.Irregularities)) {
       it("respects the irregularity between " + singular + " and " + plural, () => {
-        setInflections("en", function(inflect) {
+        setInflections("en", function (inflect) {
           inflect.irregular(singular, plural);
         });
 
@@ -323,7 +323,7 @@ describe("Inflector", () => {
 
     for (const [singular, plural] of Object.entries(TestCases.Irregularities)) {
       it("makes sure that pluralize of irregularity " + plural + " is the same", () => {
-        setInflections("en", function(inflect) {
+        setInflections("en", function (inflect) {
           inflect.irregular(singular, plural);
         });
 
@@ -333,7 +333,7 @@ describe("Inflector", () => {
 
     for (const [singular, plural] of Object.entries(TestCases.Irregularities)) {
       it("makes sure that singularize of irregularity " + singular + " is the same", () => {
-        setInflections("en", function(inflect) {
+        setInflections("en", function (inflect) {
           inflect.irregular(singular, plural);
         });
 
@@ -344,7 +344,7 @@ describe("Inflector", () => {
 
   for (const scope of ["plurals", "singulars", "uncountables", "humans"] as const) {
     it("properly clears " + scope + " inflection scope", () => {
-      setInflections("en", function(inflect) {
+      setInflections("en", function (inflect) {
         inflect.clear(scope);
       });
       expect(inflections("en")[scope].length).toBe(0);
@@ -352,7 +352,7 @@ describe("Inflector", () => {
   }
 
   it("properly clears all reflection scopes", () => {
-    setInflections("en", function(inflect) {
+    setInflections("en", function (inflect) {
       // ensure any data is present
       inflect.plural(/(quiz)$/i, "$1zes");
       inflect.singular(/(database)s$/i, "$1");
@@ -369,7 +369,7 @@ describe("Inflector", () => {
   });
 
   it("properly clears with default", () => {
-    setInflections("es", function(inflect) {
+    setInflections("es", function (inflect) {
       // ensure any data is present
       inflect.plural(/(quiz)$/i, "$1zes");
       inflect.singular(/(database)s$/i, "$1");
@@ -425,7 +425,7 @@ describe("Inflector", () => {
   it("allows overwriting transliterate approximations", () => {
     expect(parameterize("Jürgen")).toBe("jurgen");
 
-    setTransliterations("en", transliterate => {
+    setTransliterations("en", (transliterate) => {
       transliterate.approximate("ü", "ue");
     });
 
@@ -436,7 +436,7 @@ describe("Inflector", () => {
     expect(parameterize("Mädchen")).toBe("madchen");
     expect(parameterize("Mädchen", { locale: "de" })).toBe("madchen");
 
-    setTransliterations("de", transliterate => {
+    setTransliterations("de", (transliterate) => {
       transliterate.approximate("ä", "ae");
     });
 

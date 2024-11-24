@@ -1,68 +1,46 @@
 import { benchmarker } from "../benchmark";
 import { pluralize, singularize, camelize, underscore, humanize, titleize, parameterize } from "../../src";
 
-const testWords = {
-  singular: "category",
-  plural: "octopi",
-  underscored: "employee_salary",
-  camelCase: "bankAccount",
-  dasherized: "donald-e-knuth",
-  sentence: "man from the boondocks",
-  underscoredComplex: "api_responses_url",
-  underscoredWithSlash: "nested/api_response",
-  mixedCase: "API_ResponseFormat",
-  lowercaseAcronym: "html_parser",
-  uppercaseAcronym: "HTML_parser",
-  multipleUnderscores: "complex_api_response_format",
-  numbersIncluded: "api2_response_3d",
-};
-
 export default benchmarker(async (suite) => {
   suite
     .add("pluralize", function () {
-      pluralize(testWords.singular);
+      pluralize("category");
     })
     .add("singularize", function () {
-      singularize(testWords.plural);
+      singularize("octopi");
     })
     .add("camelize.basic", function () {
-      camelize(testWords.underscored);
+      camelize("employee_salary");
     })
     .add("camelize.complex", function () {
-      camelize(testWords.underscoredComplex);
+      camelize("api_responses_url");
     })
     .add("camelize.withSlash", function () {
-      camelize(testWords.underscoredWithSlash);
+      camelize("nested/api_response");
     })
     .add("camelize.mixedCase", function () {
-      camelize(testWords.mixedCase);
+      camelize("API_ResponseFormat");
     })
     .add("camelize.lowercaseFirst", function () {
-      camelize(testWords.underscoredComplex, false);
-    })
-    .add("camelize.acronymLower", function () {
-      camelize(testWords.lowercaseAcronym);
-    })
-    .add("camelize.acronymUpper", function () {
-      camelize(testWords.uppercaseAcronym);
+      camelize("api_responses_url", false);
     })
     .add("camelize.multipleUnderscores", function () {
-      camelize(testWords.multipleUnderscores);
+      camelize("complex_api_response_format");
     })
     .add("camelize.withNumbers", function () {
-      camelize(testWords.numbersIncluded);
+      camelize("api2_response_3d");
     })
     .add("underscore", function () {
-      underscore(testWords.camelCase);
+      underscore("bankAccount");
     })
     .add("humanize", function () {
-      humanize(testWords.underscored);
+      humanize("employee_salary");
     })
     .add("titleize", function () {
-      titleize(testWords.sentence);
+      titleize("man from the boondocks");
     })
     .add("parameterize", function () {
-      parameterize(testWords.dasherized);
+      parameterize("donald-e-knuth");
     });
 
   return suite;
