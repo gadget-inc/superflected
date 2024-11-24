@@ -1,5 +1,5 @@
-import ordinal from "./ordinal";
+import { ordinal } from "./ordinal";
 
-export default function ordinalize(number: string | number) {
+export function ordinalize(number: string | number) {
   return `${number}${ordinal(number)}`;
 }

@@ -1,6 +1,6 @@
 import { transliterate } from "./Transliterator";
 
-export default function parameterize(string: string, options: { locale?: string; separator?: string | null; preserveCase?: boolean } = {}) {
+export function parameterize(string: string, options: { locale?: string; separator?: string | null; preserveCase?: boolean } = {}) {
   if (options.separator === undefined) {
     options.separator = "-";
   }

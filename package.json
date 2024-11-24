@@ -2,7 +2,7 @@
   "name": "superflected",
   "version": "0.1.0",
   "description": "A port of ActiveSupport's inflector to Node.js",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "repository": "gadget-inc/superflected",
   "author": "Martin Andert",
   "license": "MIT",
@@ -38,10 +38,12 @@
     "x": "ts-node --transpile-only"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.0",
     "@gadgetinc/eslint-config": "^0.6.1",
     "@gadgetinc/prettier-config": "^0.4.0",
     "@types/node": "^22.9.3",
     "eslint": "^8.52.0",
+    "execa": "^5.1.1",
     "prettier": "^2.8.1",
     "typescript": "^5.7.2",
     "vitest": "^2.1.5"

@@ -1,6 +1,6 @@
 import { inflections } from "./Inflector";
 
-export default function humanize(lowerCaseAndUnderscoredWord: string, options?: { capitalize?: boolean }) {
+export function humanize(lowerCaseAndUnderscoredWord: string, options?: { capitalize?: boolean }) {
   let result = "" + lowerCaseAndUnderscoredWord;
   const humans = inflections().humans;
   let human, rule, replacement;

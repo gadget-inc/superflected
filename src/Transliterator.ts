@@ -1,3 +1,4 @@
+/* eslint-disable no-control-regex */
 // prettier-ignore
 const DEFAULT_APPROXIMATIONS = {
   'À': 'A',   'Á': 'A',   'Â': 'A',   'Ã': 'A',   'Ä': 'A',   'Å': 'A',   'Æ': 'AE',

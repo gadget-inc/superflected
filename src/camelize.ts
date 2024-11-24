@@ -1,7 +1,7 @@
 import { inflections } from "./Inflector";
-import capitalize from "./capitalize";
+import { capitalize } from "./capitalize";
 
-export default function camelize(term: string, uppercaseFirstLetter = true) {
+export function camelize(term: string, uppercaseFirstLetter = true) {
   let result = "" + term;
 
   if (uppercaseFirstLetter) {

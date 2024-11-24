@@ -1,6 +1,6 @@
 import { inflections } from "./Inflector";
 
-export default function underscore(camelCasedWord: string) {
+export function underscore(camelCasedWord: string) {
   let result = "" + camelCasedWord;
 
   result = result.replace(new RegExp("(?:([A-Za-z\\d])|^)(" + inflections().acronymRegex.source + ")(?=\\b|[^a-z])", "g"), function(

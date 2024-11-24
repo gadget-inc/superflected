@@ -1,4 +1,4 @@
-export default function ordinal(number: string | number) {
+export function ordinal(number: string | number) {
   const absNumber = Math.abs(Number(number));
   const mod100 = absNumber % 100;
 
