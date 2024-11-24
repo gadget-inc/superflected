@@ -315,6 +315,18 @@ constantify("bank_account"); // => 'BANK_ACCOUNT'
 constantify("Bank Account"); // => 'BANK_ACCOUNT'
 ```
 
+## Caching for performance
+
+`superflected` recomputes the result of any inflections each time you make them by default. If you know ahead of time that you'll be calling with particular high volume inputs, you can use the built in caching helpers to pin results in memory and avoid recomputation. This is just a built in memoizer that is as high performance as possible.
+
+To prepopulate the cache, call `populate` on the function you'd like to cache.
+
+```js
+import { camelize } from "superflected";
+camelize.populate("foo_bar"); // will store the result of camelize("foo_bar") in memory
+camelize("foo_bar"); // will return the cached result instead of recomputing
+```
+
 ## Contributing
 
 Here's a quick guide:

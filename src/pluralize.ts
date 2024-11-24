@@ -1,6 +1,8 @@
 import { applyInflections } from "./applyInflections";
+import { cacheable } from "./cacheable";
 import { inflections } from "./Inflector";
 
-export function pluralize(word: string, locale = "en") {
-  return applyInflections(word, inflections(locale).plurals);
-}
+export const pluralize = cacheable(
+  (word: string, locale = "en") => applyInflections(word, inflections(locale).plurals),
+  (word, locale) => `${word}-${locale}`
+);

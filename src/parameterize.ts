@@ -1,32 +1,36 @@
+import { cacheable } from "./cacheable";
 import { transliterate } from "./Transliterator";
 
-export function parameterize(string: string, options: { locale?: string; separator?: string | null; preserveCase?: boolean } = {}) {
-  if (options.separator === undefined) {
-    options.separator = "-";
-  }
+export const parameterize = cacheable(
+  (string: string, options: { locale?: string; separator?: string | null; preserveCase?: boolean } = {}) => {
+    if (options.separator === undefined) {
+      options.separator = "-";
+    }
 
-  if (options.separator === null) {
-    options.separator = "";
-  }
+    if (options.separator === null) {
+      options.separator = "";
+    }
 
-  // replace accented chars with their ascii equivalents
-  let result = transliterate(string, { locale: options.locale });
+    // replace accented chars with their ascii equivalents
+    let result = transliterate(string, { locale: options.locale });
 
-  result = result.replace(/[^a-z0-9\-_]+/gi, options.separator);
+    result = result.replace(/[^a-z0-9\-_]+/gi, options.separator);
 
-  if (options.separator.length) {
-    const separatorRegex = new RegExp(options.separator);
+    if (options.separator.length) {
+      const separatorRegex = new RegExp(options.separator);
 
-    // no more than one of the separator in a row
-    result = result.replace(new RegExp(separatorRegex.source + "{2,}"), options.separator);
+      // no more than one of the separator in a row
+      result = result.replace(new RegExp(separatorRegex.source + "{2,}"), options.separator);
 
-    // remove leading/trailing separator
-    result = result.replace(new RegExp("^" + separatorRegex.source + "|" + separatorRegex.source + "$", "i"), "");
-  }
+      // remove leading/trailing separator
+      result = result.replace(new RegExp("^" + separatorRegex.source + "|" + separatorRegex.source + "$", "i"), "");
+    }
 
-  if (options.preserveCase) {
-    return result;
-  }
+    if (options.preserveCase) {
+      return result;
+    }
 
-  return result.toLowerCase();
-}
+    return result.toLowerCase();
+  },
+  (string, options) => `${string}-${options?.locale}-${options?.separator}-${options?.preserveCase}`
+);

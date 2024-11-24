@@ -1,10 +1,11 @@
+import { cacheable } from "./cacheable";
 import { inflections } from "./Inflector";
 
 const letterOrDigit = /[A-Za-z\d]/;
 const wordBoundaryOrNonLetter = /\b|[^a-z]/;
 const boundaryMatcher = /([A-Z\d]+)([A-Z][a-z])|([a-z\d])([A-Z])|(-)/g;
 
-export function underscore(camelCasedWord: string) {
+export const underscore = cacheable((camelCasedWord: string) => {
   let result = camelCasedWord;
   const acronymMatches = inflections().casedAcronymMatcher?.search(camelCasedWord, isWordBoundary);
   if (acronymMatches) {
@@ -32,7 +33,7 @@ export function underscore(camelCasedWord: string) {
       return `${p3}_${p4}`;
     })
     .toLowerCase();
-}
+});
 
 function isWordBoundary(char: string): boolean {
   const charCode = char.charCodeAt(0);
