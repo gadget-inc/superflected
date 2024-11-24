@@ -1,10 +1,9 @@
 {
-  "name": "inflected",
-  "version": "2.1.0",
+  "name": "superflected",
+  "version": "0.1.0",
   "description": "A port of ActiveSupport's inflector to Node.js",
-  "main": "dist/umd/inflected.js",
-  "module": "dist/esm/inflected.js",
-  "repository": "martinandert/inflected",
+  "main": "dist/index.js",
+  "repository": "gadget-inc/superflected",
   "author": "Martin Andert",
   "license": "MIT",
   "keywords": [
@@ -25,41 +24,27 @@
     "activesupport"
   ],
   "scripts": {
-    "lint": "eslint --max-warnings 0 src/**",
-    "test": "yarn lint && yarn bundle && mocha -R spec --bail test/index.js && bundlewatch",
-    "precommit": "lint-staged",
-    "build": "yarn bundle && yarn minify",
-    "bundle": "rollup --config",
-    "minify": "uglifyjs dist/umd/inflected.js --compress --mangle --output dist/umd/inflected.min.js"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "lint": "pnpm run lint:prettier && pnpm run lint:eslint",
+    "lint:prettier": "prettier --check \"{spec,src}/**/*.{js,ts}\"",
+    "lint:eslint": "eslint --quiet --ext ts,tsx spec src",
+    "lint:fix": "prettier --write --check \"{spec,src}/**/*.{js,ts}\"; eslint --ext ts --fix spec src",
+    "build": "rm -rf dist && tsc",
+    "watch": "rm -rf dist && tsc --watch --preserveWatchOutput",
+    "prepublishOnly": "pnpm run build",
+    "prerelease": "gitpkg publish",
+    "clean": "rm -rf *.0x *-v8.log",
+    "x": "ts-node --transpile-only"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.2",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-latest": "^6.24.1",
-    "bundlewatch": "^0.3.0",
-    "eslint": "^4.18.2",
-    "eslint-plugin-import": "^2.2.0",
-    "husky": "^0.13.3",
-    "lint-staged": "^3.4.0",
-    "mocha": "^3.2.0",
-    "object-assign": "^4.1.1",
-    "prettier": "^1.1.0",
-    "rollup": "^0.41.6",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "uglify-js": "^2.8.22"
+    "@gadgetinc/eslint-config": "^0.6.1",
+    "@gadgetinc/prettier-config": "^0.4.0",
+    "@types/node": "^22.9.3",
+    "eslint": "^8.52.0",
+    "prettier": "^2.8.1",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.5"
   },
-  "lint-staged": {
-    "src/**/*.js": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "bundlewatch": [
-    {
-      "path": "./dist/*/inflected.js",
-      "maxSize": "5 kB"
-    }
-  ]
+  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
 }
