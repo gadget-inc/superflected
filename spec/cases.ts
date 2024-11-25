@@ -110,43 +110,43 @@ export default {
     "|ice": "|ices",
     "|ouse": "|ouses",
     slice: "slices",
-    police: "police"
+    police: "police",
   },
 
   CamelToUnderscore: {
     Product: "product",
     SpecialGuest: "special_guest",
     ApplicationController: "application_controller",
-    Area51Controller: "area51_controller"
+    Area51Controller: "area51_controller",
   },
 
   UnderscoreToLowerCamel: {
     product: "product",
     special_guest: "specialGuest",
     application_controller: "applicationController",
-    area51_controller: "area51Controller"
+    area51_controller: "area51Controller",
   },
 
   CamelToUnderscoreWithoutReverse: {
     HTMLTidy: "html_tidy",
     HTMLTidyGenerator: "html_tidy_generator",
     FreeBSD: "free_bsd",
-    HTML: "html"
+    HTML: "html",
   },
 
   ClassNameToForeignKeyWithUnderscore: {
     Person: "person_id",
-    BillingAccount: "billing_account_id"
+    BillingAccount: "billing_account_id",
   },
 
   ClassNameToForeignKeyWithoutUnderscore: {
     Person: "personid",
-    BillingAccount: "billing_accountid"
+    BillingAccount: "billing_accountid",
   },
 
   ClassNameToTableName: {
     PrimarySpokesman: "primary_spokesmen",
-    NodeChild: "node_children"
+    NodeChild: "node_children",
   },
 
   StringToParameterized: {
@@ -157,7 +157,7 @@ export default {
     "!@#Leading bad characters": "leading-bad-characters",
     "Squeeze   separators": "squeeze-separators",
     "Test with + sign": "test-with-sign",
-    "Test with malformed utf8 \xa9": "test-with-malformed-utf8"
+    "Test with malformed utf8 \xa9": "test-with-malformed-utf8",
   },
 
   StringToParameterizeWithNoSeparator: {
@@ -168,7 +168,7 @@ export default {
     "!@#Leading bad characters": "leadingbadcharacters",
     "Squeeze   separators": "squeezeseparators",
     "Test with + sign": "testwithsign",
-    "Test with malformed utf8 \xa9": "testwithmalformedutf8"
+    "Test with malformed utf8 \xa9": "testwithmalformedutf8",
   },
 
   StringToParameterizeWithPreserveCase: {
@@ -179,7 +179,7 @@ export default {
     "!@#leading bad Characters": "leading-bad-Characters",
     "squeeze   Separators": "squeeze-Separators",
     "Test with + Sign": "Test-with-Sign",
-    "Test with malformed UTF8 \xa9": "Test-with-malformed-UTF8"
+    "Test with malformed UTF8 \xa9": "Test-with-malformed-UTF8",
   },
 
   StringToParameterizeWithUnderscore: {
@@ -191,7 +191,7 @@ export default {
     "!@#Leading bad characters": "leading_bad_characters",
     "Squeeze   separators": "squeeze_separators",
     "Test with + sign": "test_with_sign",
-    "Test with malformed utf8 \xa9": "test_with_malformed_utf8"
+    "Test with malformed utf8 \xa9": "test_with_malformed_utf8",
   },
 
   StringToParameterizedAndNormalized: {
@@ -200,19 +200,19 @@ export default {
     OpsÙ: "opsu",
     Ærøskøbing: "aeroskobing",
     Aßlar: "asslar",
-    "Japanese: 日本語": "japanese"
+    "Japanese: 日本語": "japanese",
   },
 
   UnderscoreToHuman: {
     employee_salary: "Employee salary",
     employee_id: "Employee",
-    underground: "Underground"
+    underground: "Underground",
   },
 
   UnderscoreToHumanWithoutCapitalize: {
     employee_salary: "employee salary",
     employee_id: "employee",
-    underground: "underground"
+    underground: "underground",
   },
 
   MixtureToTitleCase: {
@@ -231,7 +231,7 @@ export default {
     "maybe you'll be there": "Maybe You'll Be There",
     "¿por qué?": "¿Por Qué?",
     "Fred’s": "Fred’s",
-    "Fred`s": "Fred`s"
+    "Fred`s": "Fred`s",
   },
 
   OrdinalNumbers: {
@@ -295,13 +295,13 @@ export default {
     "112": "112th",
     "113": "113th",
     "1000": "1000th",
-    "1001": "1001st"
+    "1001": "1001st",
   },
 
   UnderscoresToDashes: {
     street: "street",
     street_address: "street-address",
-    person_street_address: "person-street-address"
+    person_street_address: "person-street-address",
   },
 
   Irregularities: {
@@ -312,7 +312,7 @@ export default {
     move: "moves",
     cow: "kine",
     zombie: "zombies",
-    genus: "genera"
+    genus: "genera",
   },
 
   WordsToConstantCase: {
@@ -323,6 +323,6 @@ export default {
     "bank-account": "BANK_ACCOUNT",
     bank_account: "BANK_ACCOUNT",
     "Bank Account": "BANK_ACCOUNT",
-    "Multiple   Bank Account": "MULTIPLE_BANK_ACCOUNT"
-  }
+    "Multiple   Bank Account": "MULTIPLE_BANK_ACCOUNT",
+  },
 };

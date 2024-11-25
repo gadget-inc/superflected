@@ -57,7 +57,7 @@ export class Transliterator {
   }
 
   transliterate(string: string, replacement: string) {
-    return string.replace(/[^\u0000-\u007f]/g, c => this.approximations[c] || replacement || DEFAULT_REPLACEMENT_CHAR);
+    return string.replace(/[^\u0000-\u007f]/g, (c) => this.approximations[c] || replacement || DEFAULT_REPLACEMENT_CHAR);
   }
 }
 
